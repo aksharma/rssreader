@@ -1,0 +1,17 @@
+<h2>Favorites</h2>
+
+<% @entries.each do |entry| %>
+    <p>
+      <%= link_to(entry.title, entry.url) %>
+
+      <br/>
+      <%= entry.summary %>
+      (<%= entry.published %>)
+      <%= button_to "Remove from favorites", { action: "destroy", id: entry.id },
+                    method: :delete, data: { confirm: "Are you sure?" } %>
+      <br/>
+
+    </p>
+<% end %>
+
+<p><%= link_to("Back To Feed", '/feed') %></p>

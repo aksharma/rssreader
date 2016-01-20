@@ -1,0 +1,19 @@
+<h2><%= @feed.title %></h2>
+<%= @feed.description %>  (<%= @feed.last_modified %>)
+
+<p><%= link_to("My Favorites", '/entries') %></p>
+
+<% @feed.entries.each do |entry| %>
+    <p>
+      <%= link_to(entry.title, entry.url) %>
+      <br/>
+      <%= entry.summary %>
+      (<%= entry.published %>)
+      <% unless @favorite_entry_ids.include? entry.entry_id %>
+          <%= button_to "Save to Favorites",
+                        { controller: :entries, action: :create,
+                          title: entry.title, summary: entry.summary, url: entry.url, entry_id: entry.entry_id, published: entry.published } %>
+      <% end %>
+      <br/>
+    </p>
+<% end %>
