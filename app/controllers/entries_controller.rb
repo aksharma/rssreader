@@ -19,6 +19,6 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.permit(:title, :summary, :entry_url, :entry_id, :published)
+    params.permit(:title, :summary, :url, :entry_id, :published)
   end
 end
